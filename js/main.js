@@ -7,7 +7,7 @@ const sendForm = document.getElementById('send-form');
 const inputField = document.getElementById('input');
 
 // Helpers.
-const defaultDeviceName = 'Terminal';
+const defaultDeviceName = 'Not Connected';
 const terminalAutoScrollingLimit = terminalContainer.offsetHeight / 2;
 let isTerminalAutoScrolling = true;
 
@@ -17,6 +17,9 @@ const scrollElement = (element) => {
   if (scrollTop > 0) {
     element.scrollTop = scrollTop;
   }
+
+   // element.lastChild.scrollIntoView(false);
+	// console.log("dsaf");
 };
 
 const logToTerminal = (message, type = '') => {
@@ -34,6 +37,7 @@ const terminal = new BluetoothTerminal();
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
   logToTerminal(data, 'in');
+  document.getElementById("recv_text").innerHTML = data;
 };
 
 // Override default log method to output messages to the terminal and console.
@@ -50,6 +54,9 @@ const send = (data) => {
   terminal.send(data).
       then(() => logToTerminal(data, 'out')).
       catch((error) => logToTerminal(error));
+
+	// var objDiv = document.getElementById("terminal");
+	// objDiv.scrollTop = objDiv.scrollHeight;
 };
 
 // Bind event listeners to the UI elements.

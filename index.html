@@ -33,7 +33,7 @@
     <div class="app">
 
         <div class="toolbar">
-            <div id="device-name" class="name">Remote Control</div>
+            <div id="device-name" class="name">Not Connected</div>
 
             <div class="buttons">
                 <button id="connect" type="button" aria-label="Connect">
@@ -50,11 +50,13 @@
 
 <input checked="checked" id="tab1" type="radio" name="pct" />
 <input                   id="tab2" type="radio" name="pct" />
+<!-- <input  id="tab1" type="radio" name="pct" /> -->
+<!-- <input checked="checked" id="tab2" type="radio" name="pct" /> -->
 
   <nav>
     <ul>
       <li class="tab1">
-        <label for="tab1">Contorl</label>
+        <label for="tab1">Control</label>
       </li>
 
       <li class="tab2">
@@ -73,15 +75,17 @@
 		</div>
 	   </div>
 
-	   <div class="tab2">
+	   <div class="tab2 vexpand">
+		<div class="terminal-tab">
 		<div id="terminal" class="terminal"></div>
+
 		<form id="send-form" class="send-form">
 		    <input id="input" type="text" aria-label="Input" autocomplete="off" placeholder="Type something to send...">
 		    <button type="submit" aria-label="Send">
 			<i class="material-icons">send</i>
 		    </button>
-
 		</form>
+         	   </div>
 	   </div>
    </section>
 </div>
@@ -94,17 +98,22 @@
     <script src="js/companion.js" data-service-worker="sw.js"></script>
 
     <script type="text/javascript">
-	// Create JoyStick object into the DIV 'joyDiv'
 	    var joy = new JoyStick('joyDiv', { internalFillColor: "#E97777",
 					       internalStrokeColor: "#E97777",
 					       externalStrokeColor: "#FF9F9F" });
 
-	setInterval(function(){ 
-			    // joy.GetX(); 
-			    // joy.GetY(); 
-			    logToTerminal(joy.GetX())
+	    var slider = document.getElementById("myRange")
 
-		    }, 100);
+	setInterval(function(){ 
+			    message =  "S" + joy.GetX() + "," 
+			    		+ joy.GetY() + ","
+			    		+ slider.value + "E";
+
+			  if (terminal.getDeviceName() != ""){
+				  terminal.send(message).then(() => {});
+			      }
+			    console.log(message);
+		    }, 500);
     </script>
 
 </body>
