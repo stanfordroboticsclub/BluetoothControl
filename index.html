@@ -15,7 +15,7 @@
 
     <title>Remote Contorl</title>
 
-    <link rel="manifest" href="manifest.json">
+    <!-- <link rel="manifest" href="manifest.json"> -->
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -77,7 +77,10 @@
 
 	   <div class="tab2 vexpand">
 		<div class="terminal-tab">
-		<div id="terminal" class="terminal"></div>
+			<div id="terminal_container" style="flex-grow: 1;">
+				<div id="terminal" class="terminal"></div>
+			</div>
+
 
 		<form id="send-form" class="send-form">
 		    <input id="input" type="text" aria-label="Input" autocomplete="off" placeholder="Type something to send...">
@@ -95,7 +98,7 @@
     <script src="js/BluetoothTerminal.js"></script>
     <script src="js/main.js"></script>
     <script src="js/joy.js"></script>
-    <script src="js/companion.js" data-service-worker="sw.js"></script>
+    <!-- <script src="js/companion.js" data-service-worker="sw.js"></script> -->
 
     <script type="text/javascript">
 	    var joy = new JoyStick('joyDiv', { internalFillColor: "#E97777",
