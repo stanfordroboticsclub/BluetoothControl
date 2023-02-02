@@ -170,6 +170,17 @@ var JoyStick = (function(container, parameters, callback)
 			movedX = centerX + maxMoveStick * diffX/length;
 			movedY = centerY + maxMoveStick * diffY/length;
 		}
+	} else if (boundsType == "diamond"){
+			var diffX = movedX - centerX;
+			var diffY = movedY - centerY;
+			var sum = diffX + diffY;
+			var dif = diffX - diffY;
+
+			sum = Math.min(Math.max(sum, -maxMoveStick), maxMoveStick);
+			dif = Math.min(Math.max(dif, -maxMoveStick), maxMoveStick);
+
+			movedX = centerX + (sum + dif)/2;
+			movedY = centerY + (sum - dif)/2;
 	} else {
 		console.log("bad parameter");
 	}
