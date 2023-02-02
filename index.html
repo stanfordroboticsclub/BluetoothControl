@@ -67,12 +67,14 @@
 
    <section>
 	   <div class="tab1">
-		<div id="recv_text"> Message </div>
+		<div id="recv_text"> Incoming Message </div>
 		<div id="joyDiv" style="width:200px;height:200px;margin-bottom:20px;  margin-left: auto; margin-right: auto;"></div>
 
 		<div class="slidecontainer">
 		  <input type="range" min="-100" max="100" value="0" class="slider" id="myRange" style="display: block; margin-left: auto; margin-right: auto;">
 		</div>
+
+		<div id="sent_text">  </div>
 	   </div>
 
 	   <div class="tab2 vexpand">
@@ -106,6 +108,7 @@
 					       externalStrokeColor: "#FF9F9F" });
 
 	    var slider = document.getElementById("myRange")
+	    var output = document.getElementById("sent_text")
 
 	setInterval(function(){ 
 			    message =  "S" + joy.GetX() + "," 
@@ -116,7 +119,8 @@
 				  terminal.send(message).then(() => {});
 			      }
 			    console.log(message);
-		    }, 500);
+			    output.innerHTML = message;
+		    }, 100);
     </script>
 
 </body>

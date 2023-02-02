@@ -129,7 +129,7 @@ button {
   /* background: #FF0000; /1* Grey background *1/ */
 }
 
-#recv_text {
+#recv_text, #sent_text {
 	text-align: center;
 	padding: 15px;
 }
