@@ -74,6 +74,10 @@
 		  <input type="range" min="-100" max="100" value="0" class="slider" id="myRange" style="display: block; margin-left: auto; margin-right: auto;">
 		</div>
 
+		<div class="buttoncontainder">
+		  <button type="button" id="candy_button" onclick="button_count+=1" style="display: block; margin-left: auto; margin-right: auto;">Dispense Candy</button>
+		</div>
+
 		<div id="sent_text">  </div>
 	   </div>
 
@@ -110,11 +114,13 @@
 
 	    var slider = document.getElementById("myRange")
 	    var output = document.getElementById("sent_text")
+	    var button_count = 0
 
 	setInterval(function(){ 
 			    message =  "S" + joy.GetX() + "," 
 			    		+ joy.GetY() + ","
-			    		+ slider.value + "E";
+			    		+ slider.value + ","
+			    		+ button_count + "E";
 
 			  if (terminal.getDeviceName() != ""){
 				  terminal.send(message).then(() => {});
